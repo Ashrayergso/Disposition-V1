@@ -1,0 +1,42 @@
+```html
+{% extends "app_name/base.html" %}
+
+{% block content %}
+  <h2>Automatic Assignment Results</h2>
+  <div id="conflictAlert"></div>
+  <table id="assignmentTable" class="table">
+    <thead>
+      <tr>
+        <th>Ship</th>
+        <th>Position</th>
+        <th>Assigned Crew Member</th>
+        <th>Arrival Date</th>
+        <th>Departure Date</th>
+        <th>Port</th>
+        <th>Voyage Type</th>
+        <th>Port Type</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for assignment in assignments %}
+        <tr>
+          <td>{{ assignment.ship }}</td>
+          <td>{{ assignment.position }}</td>
+          <td>{{ assignment.crew_member }}</td>
+          <td>{{ assignment.arrival_date }}</td>
+          <td>{{ assignment.departure_date }}</td>
+          <td>{{ assignment.port_name }}</td>
+          <td>{{ assignment.voyage_type }}</td>
+          <td>{{ assignment.port_type }}</td>
+          <td>
+            <button class="modify-assignment" data-id="{{ assignment.id }}">Modify</button>
+            <button class="confirm-assignment" data-id="{{ assignment.id }}">Confirm</button>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <div id="updateNotification"></div>
+{% endblock %}
+```
