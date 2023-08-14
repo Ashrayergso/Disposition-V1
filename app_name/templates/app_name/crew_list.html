@@ -1,0 +1,38 @@
+```html
+{% extends 'app_name/base.html' %}
+
+{% block content %}
+  <h2>Crew List</h2>
+  <input type="text" id="crewSearch" onkeyup="filterTable('crewTable', 'crewSearch')" placeholder="Search for crew..">
+  <table id="crewTable">
+    <thead>
+      <tr>
+        <th onclick="sortTable('crewTable', 0)">Name</th>
+        <th onclick="sortTable('crewTable', 1)">Position</th>
+        <th onclick="sortTable('crewTable', 2)">Contract Length</th>
+        <th onclick="sortTable('crewTable', 3)">Onboard Months</th>
+        <th onclick="sortTable('crewTable', 4)">Vacation Months</th>
+        <th onclick="sortTable('crewTable', 5)">Certificate</th>
+        <th onclick="sortTable('crewTable', 6)">Expiry Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for crew in crew_list %}
+        <tr>
+          <td>{{ crew.name }}</td>
+          <td>{{ crew.position.position_name }}</td>
+          <td>{{ crew.position.contract_length }}</td>
+          <td>{{ crew.position.onboard_months }}</td>
+          <td>{{ crew.position.vacation_months }}</td>
+          <td>{{ crew.certificate.certificate_name }}</td>
+          <td>{{ crew.certificate.expiry_date }}</td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="7">No crew found</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
+```

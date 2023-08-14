@@ -1,0 +1,41 @@
+```html
+{% extends "app_name/base.html" %}
+
+{% block content %}
+  <h2>Assignment List</h2>
+  <table id="assignmentTable">
+    <thead>
+      <tr>
+        <th>Ship</th>
+        <th>Position</th>
+        <th>Assigned Crew Member</th>
+        <th>Contract Length</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for assignment in assignments %}
+        <tr>
+          <td>{{ assignment.ship }}</td>
+          <td>{{ assignment.position }}</td>
+          <td>{{ assignment.crew_member }}</td>
+          <td>{{ assignment.contract_length }}</td>
+          <td>
+            <button class="modify-assignment" data-id="{{ assignment.id }}">Modify</button>
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="5">No assignments found.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <div id="conflictAlert" class="alert" style="display: none;"></div>
+  <div id="updateNotification" class="notification" style="display: none;"></div>
+
+  <script src="{% static 'app_name/js/main.js' %}"></script>
+  <script src="{% static 'app_name/js/filtering.js' %}"></script>
+{% endblock %}
+```

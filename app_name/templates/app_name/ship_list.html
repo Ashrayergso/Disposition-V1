@@ -1,0 +1,38 @@
+```html
+{% extends "app_name/base.html" %}
+
+{% block content %}
+  <h2>Ship List</h2>
+  <input type="text" id="shipSearchInput" onkeyup="filterTable('shipTable', 'shipSearchInput')" placeholder="Search for ships..">
+  <table id="shipTable">
+    <thead>
+      <tr>
+        <th onclick="sortTable('shipTable', 0)">Ship</th>
+        <th onclick="sortTable('shipTable', 1)">Port Name</th>
+        <th onclick="sortTable('shipTable', 2)">Port Code</th>
+        <th onclick="sortTable('shipTable', 3)">Arrival Date</th>
+        <th onclick="sortTable('shipTable', 4)">Departure Date</th>
+        <th onclick="sortTable('shipTable', 5)">Voyage Type</th>
+        <th onclick="sortTable('shipTable', 6)">Port Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for schedule in ship_sailing_schedules %}
+        <tr>
+          <td>{{ schedule.ship }}</td>
+          <td>{{ schedule.port_name }}</td>
+          <td>{{ schedule.port_code }}</td>
+          <td>{{ schedule.arrival_date }}</td>
+          <td>{{ schedule.departure_date }}</td>
+          <td>{{ schedule.voyage_type }}</td>
+          <td>{{ schedule.port_type }}</td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="7">No ships found</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
+```
